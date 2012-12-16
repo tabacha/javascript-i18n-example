@@ -1,0 +1,7 @@
+{
+  "This is the tile of the i18n test example": "Dies ist der Titel der I18n Test-Beispielseite",
+ "You have {0} balls.":"Du hast {0} Bälle.",
+ "You have {0} ball.":"Du hast {0} Ball.",
+ "Change number of balls:":"Anzahl Bälle:",
+ "Choose language":"Wähle die Sprache:"
+}

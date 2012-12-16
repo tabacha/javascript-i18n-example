@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>internationalisation demo i18next.js</title>
+<script type="text/javascript" src="lib/i18next-1.5.9.min.js" ></script>
+</head>
+<body>
+This is an example template, for the i18next.js framwork.
+
+See: <a href="http://i18next.com/">http://i18next.com/</a> for more information.
+
+<h1 id="title">This title should be set by javascrpt</h1>
+
+<p id="text">This text should be set by javascript</p>
+
+<hr />
+<from>
+<p id="instruction1">Should be set by js</p><input id="num" type="text" size="5" maxlength="5" value="2" />
+<p id="instruction2">Should be set by js</p><select id="lang" size="1">
+      <option lang="de">German</option>
+      <option lang="en">English</option>
+    </select>
+</form>
+<script type="text/javascript">
+
+i18n.init({ resGetPath: 'i18n/__ns__-__lng__.json' });
+
+  // translate nav
+   //   $(".nav").i18n();
+
+  // programatical access
+  //var appName = t("app.name");
+//});
+i18n.init(function(t) {
+
+var text = document.getElementById("text").firstChild,
+ title = document.getElementById("title").firstChild,
+ instruction1 = document.getElementById("instruction1").firstChild,
+ instruction2 = document.getElementById("instruction2").firstChild,
+ num = document.getElementById("num"),
+ lang = document.getElementById("lang");
+
+title.nodeValue = i18n.t("title");
+text.nodeValue = "You have 2 balls";
+instruction1.nodeValue = "Change number of balls:";
+instruction2.nodeValue = "Choose language";
+
+num.onchange = function (e) {
+  
+  var t = "You have "+num.value+" balls.";
+  if (num.value < 2) { 
+    t="You have "+num+" ball.";
+  }
+  text.nodeValue=t;
+
+}
+});
+</script>
+</body>
+</html>

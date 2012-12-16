@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>internationalisation demo l10n</title>
+<script type="text/javascript" src="lib/json2.min.js"></script>
+<script type="text/javascript" src="lib/l10n.min.js"></script>
+<script type="text/javascript" src="localizations.js"></script>
+
+
+</head>
+<body>
+This is an example for the l10n javascript framework. See:
+<ul>
+<li><a href="http://eligrey.com/blog/post/passive-localization-in-javascript">http://eligrey.com/blog/post/passive-localization-in-javascript</a>
+<li><a href="https://github.com/eligrey/l10n.js/">https://github.com/eligrey/l10n.js/</a>
+</ul>
+<h1 id="title">This title should be set by javascrpt</h1>
+
+<p id="text">This text should be set by javascript</p>
+
+<hr />
+<from>
+<p id="instruction1">Should be set by js</p><input id="num" type="text" size="5" maxlength="5" value="2" />
+<p id="instruction2">Should be set by js</p><select id="lang" size="1">
+      <option value="de">German</option>
+      <option value="en">English</option>
+    </select>
+</form>
+<script type="text/javascript">
+String.prototype.format = function() {
+    var formatted = this;
+    for (var i = 0; i < arguments.length; i++) {
+        var regexp = new RegExp('\\{'+i+'\\}', 'gi');
+        formatted = formatted.replace(regexp, arguments[i]);
+    }
+    return formatted;
+};
+
+if (location.hash) {
+	String.locale = location.hash.substr(1);	
+}
+var l = function (string) {
+	var localized = string.toLocaleString();
+	return localized;
+};
+
+
+var text = document.getElementById("text").firstChild,
+ title = document.getElementById("title").firstChild,
+ instruction1 = document.getElementById("instruction1").firstChild,
+ instruction2 = document.getElementById("instruction2").firstChild,
+ num = document.getElementById("num"),
+ lang = document.getElementById("lang");
+
+title.nodeValue = l("This is the tile of the i18n test example");
+text.nodeValue = l("You have {0} balls.").format(2);
+instruction1.nodeValue = l("Change number of balls:");
+instruction2.nodeValue = l("Choose language");
+
+num.onchange = function (e) {
+  
+  var t = l("You have {0} balls.");
+  if (num.value < 2) { 
+    t=l("You have {0} ball.");
+  }
+  text.nodeValue=t.format(num.value);
+
+};
+lang.onchange = function (e) {
+   String.locale=lang.value;
+};
+</script>
+</body>
+</html>
