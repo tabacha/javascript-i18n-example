@@ -18,8 +18,8 @@ See: <a href="http://i18next.com/">http://i18next.com/</a> for more information.
 <from>
 <p id="instruction1">Should be set by js</p><input id="num" type="text" size="5" maxlength="5" value="2" />
 <p id="instruction2">Should be set by js</p><select id="lang" size="1">
-      <option lang="de">German</option>
-      <option lang="en">English</option>
+      <option value="de">German</option>
+      <option value="en">English</option>
     </select>
 </form>
 <script type="text/javascript">
@@ -32,8 +32,6 @@ i18n.init({ resGetPath: 'i18n/__ns__-__lng__.json' });
   // programatical access
   //var appName = t("app.name");
 //});
-i18n.init(function(t) {
-
 var text = document.getElementById("text").firstChild,
  title = document.getElementById("title").firstChild,
  instruction1 = document.getElementById("instruction1").firstChild,
@@ -41,21 +39,25 @@ var text = document.getElementById("text").firstChild,
  num = document.getElementById("num"),
  lang = document.getElementById("lang");
 
-title.nodeValue = i18n.t("title");
-text.nodeValue = "You have 2 balls";
-instruction1.nodeValue = "Change number of balls:";
-instruction2.nodeValue = "Choose language";
+i18n.init(function(t) {
 
+
+title.nodeValue = i18n.t("title");
+text.nodeValue = i18n.t("ball", { count: 2 });
+instruction1.nodeValue = i18n.t("chooser.ball");
+instruction2.nodeValue = i18n.t("chooser.lang");
+
+});
 num.onchange = function (e) {
-  
-  var t = "You have "+num.value+" balls.";
-  if (num.value < 2) { 
-    t="You have "+num+" ball.";
-  }
+  var t =i18n.t("ball", { count: parseInt(num.value) });
   text.nodeValue=t;
 
-}
-});
+};
+
+lang.onchange = function (e) {
+   i18n.setLng(lang.value);
+};
+
 </script>
 </body>
 </html>

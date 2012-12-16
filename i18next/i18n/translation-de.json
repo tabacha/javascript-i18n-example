@@ -1,3 +1,9 @@
 {
-  "title": "Dies ist der Titel des i18n Beispiels"
+ "title": "Dies ist der Titel des i18n Beispiels",
+ "ball": "Du hast __count__ Ball.",
+  "ball_plural": "Du hast __count__ Bälle.",
+  "chooser": {
+	"ball" : "Anzahl Bälle:",
+	"lang" : "Wähle die Sprache:"
+ }
 }
