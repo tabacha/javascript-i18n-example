@@ -1,6 +1,12 @@
 This is an evaluation repository about internationalisation (i18n) in javascript. 
 It should show a example how you translate strings in diffrent javascript i18n frameworks.
 
+This is done to help to make an dession which framework the Openstreemap Editor id should use. 
+
+See:
+
+https://github.com/systemed/iD/issues/17
+
 # Wishlist for i18n
 
 * open source, free license
