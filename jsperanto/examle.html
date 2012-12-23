@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>internationalisation demo</title>
+<script type="text/javascript" src="lib/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="lib/jquery.jsperanto.js"></script>
+</head>
+<body>
+This is an example template, for the jsperanto framework.
+
+ See: <a href="https://github.com/jpjoyal/jsperanto">https://github.com/jpjoyal/jsperanto</a> for more information.
+
+
+<h1 id="title">This title should be set by javascrpt</h1>
+
+<p id="text">This text should be set by javascript</p>
+
+<hr />
+<from>
+<p id="instruction1">Should be set by js</p><input id="num" type="text" size="5" maxlength="5" value="2" />
+<p id="instruction2">Should be set by js</p><select id="lang" size="1">
+      <option value="de">German</option>
+      <option value="en">English</option>
+    </select>
+</form>
+<script type="text/javascript">
+
+var text = document.getElementById("text").firstChild,
+ title = document.getElementById("title").firstChild,
+ instruction1 = document.getElementById("instruction1").firstChild,
+ instruction2 = document.getElementById("instruction2").firstChild,
+ num = document.getElementById("num"),
+ lang = document.getElementById("lang");
+$.jsperanto.init(function(t){
+title.nodeValue = t("title");
+text.nodeValue = t("ball", { count: 2 });
+instruction1.nodeValue = t("chooser.ball");
+instruction2.nodeValue = t("chooser.lang");
+},{dicoPath:"i18n"});
+
+num.onchange = function (e) {
+  
+  var t = $.t("ball", { count: parseInt(num.value) });
+  text.nodeValue=t;
+
+}
+lang.onchange = function (e) {
+    $.jsperanto.init(function(t){},{lang:lang.value,dicoPath:"i18n"});
+};
+
+</script>
+</body>
+</html>
